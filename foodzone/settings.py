@@ -58,7 +58,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'foodzone.wsgi.application'
+WSGI_APPLICATION = 'SUDHASTAR.wsgi.application'
 
 
 # Database
