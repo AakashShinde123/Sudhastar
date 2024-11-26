@@ -3,7 +3,7 @@ from myapp.models import Contact, Dish, Team, Category, Profile, Order
 from django.http import HttpResponse,JsonResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
-from paypal.standard.forms import PayPalPaymentsForm
+#from paypal.standard.forms import PayPalPaymentsForm
 from django.conf import settings
 
 def index(request):
@@ -170,49 +170,49 @@ def user_logout(request):
     logout(request)
     return HttpResponseRedirect('/')
 
-def single_dish(request, id):
-    context={}
-    dish = get_object_or_404(Dish, id=id)
+# def single_dish(request, id):
+#     context={}
+#     dish = get_object_or_404(Dish, id=id)
 
-    if request.user.is_authenticated:
-        cust = get_object_or_404(Profile, user__id = request.user.id)
-        order = Order(customer=cust, item=dish)
-        order.save()
-        inv = f'INV0000-{order.id}'
+#     if request.user.is_authenticated:
+#         cust = get_object_or_404(Profile, user__id = request.user.id)
+#         order = Order(customer=cust, item=dish)
+#         order.save()
+#         inv = f'INV0000-{order.id}'
 
-        paypal_dict = {
-            'business':settings.PAYPAL_RECEIVER_EMAIL,
-            'amount':dish.discounted_price,
-            'item_name':dish.name,
-            'user_id':request.user.id,
-            'invoice':inv,
-            'notify_url':'http://{}{}'.format(settings.HOST, reverse('paypal-ipn')),
-            'return_url':'http://{}{}'.format(settings.HOST,reverse('payment_done')),
-            'cancel_url':'http://{}{}'.format(settings.HOST,reverse('payment_cancel')),
-        }
+#         paypal_dict = {
+#             'business':settings.PAYPAL_RECEIVER_EMAIL,
+#             'amount':dish.discounted_price,
+#             'item_name':dish.name,
+#             'user_id':request.user.id,
+#             'invoice':inv,
+#             'notify_url':'http://{}{}'.format(settings.HOST, reverse('paypal-ipn')),
+#             'return_url':'http://{}{}'.format(settings.HOST,reverse('payment_done')),
+#             'cancel_url':'http://{}{}'.format(settings.HOST,reverse('payment_cancel')),
+#         }
 
-        order.invoice_id = inv 
-        order.save()
-        request.session['order_id'] = order.id
+#         order.invoice_id = inv 
+#         order.save()
+#         request.session['order_id'] = order.id
 
-        form = PayPalPaymentsForm(initial=paypal_dict)
-        context.update({'dish':dish, 'form':form})
+#         form = PayPalPaymentsForm(initial=paypal_dict)
+#         context.update({'dish':dish, 'form':form})
 
-    return render(request,'dish.html', context)
+#     return render(request,'dish.html', context)
 
-def payment_done(request):
-    pid = request.GET.get('PayerID')
-    order_id = request.session.get('order_id')
-    order_obj = Order.objects.get(id=order_id)
-    order_obj.status=True 
-    order_obj.payer_id = pid
-    order_obj.save()
+# def payment_done(request):
+#     pid = request.GET.get('PayerID')
+#     order_id = request.session.get('order_id')
+#     order_obj = Order.objects.get(id=order_id)
+#     order_obj.status=True 
+#     order_obj.payer_id = pid
+#     order_obj.save()
 
-    return render(request, 'payment_successfull.html') 
+#     return render(request, 'payment_successfull.html') 
 
-def payment_cancel(request):
-    ## remove comment to delete cancelled order
-    # order_id = request.session.get('order_id')
-    # Order.objects.get(id=order_id).delete()
+# def payment_cancel(request):
+#     ## remove comment to delete cancelled order
+#     # order_id = request.session.get('order_id')
+#     # Order.objects.get(id=order_id).delete()
 
-    return render(request, 'payment_failed.html') 
+#     return render(request, 'payment_failed.html') 
