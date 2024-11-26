@@ -22,7 +22,7 @@ urlpatterns = [
     path('privacy/', views.privacy_policy_view, name='privacy'),
     path('cookies/', views.cookies_policy_view, name='cookies'),
     path('help/',  views.contact_view, name='help'),
-    path('paypal/',include('paypal.standard.ipn.urls')),
-    path('payment_done/', views.payment_done, name='payment_done'),
-    path('payment_cancel/', views.payment_cancel, name='payment_cancel'),
+    # path('paypal/',include('paypal.standard.ipn.urls')),
+    # path('payment_done/', views.payment_done, name='payment_done'),
+    # path('payment_cancel/', views.payment_cancel, name='payment_cancel'),
 ]+static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
