@@ -8,13 +8,13 @@
     ],
     "outputDirectory": "staticfiles_build",
     "env": {
-      "DJANGO_SETTINGS_MODULE": "SUDHASTAR.settings",
+      "DJANGO_SETTINGS_MODULE": "foodzone.settings",
       "PYTHON_VERSION": "3.x"
     },
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "/SUDHASTAR/$1"
+        "dest": "/foodzone/$1"
       }
     ]
   }
