@@ -1,15 +1,13 @@
 from pathlib import Path
-import os 
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-TEMPLATE_DIR = os.path.join(BASE_DIR, 'template')
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')  # Correct template directory
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY', 'your-secret-key')
-
+# Quick-start development settings - unsuitable for production
+SECRET_KEY = 'django-insecure-+06=x1aer^924_h5a5+l0sr)fb8p-9xd+#ctxqib1bi^ztu5dw'
 DEBUG = False
-
 ALLOWED_HOSTS = ['*']
 
 # Application definition
@@ -54,38 +52,38 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'foodzone.wsgi.application'
 
-# Database Configuration (use PostgreSQL for production)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.getenv('DB_NAME'),
-#         'USER': os.getenv('DB_USER'),
-#         'PASSWORD': os.getenv('DB_PASSWORD'),
-#         'HOST': os.getenv('DB_HOST'),
-#         'PORT': os.getenv('DB_PORT'),
-#     }
-# }
 
-# Static files (CSS, JavaScript, Images)
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
+AUTH_PASSWORD_VALIDATORS = [
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# Media files
-MEDIA_URL = '/media/'
+LANGUAGE_CODE = 'en-us'
+TIME_ZONE = 'Asia/Kolkata'
+USE_I18N = True
+USE_L10N = True
+USE_TZ = True
+
+STATIC_URL = '/static/'
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Ensure this is correctly set
+
+STATICFILES_DIRS = [
+    STATIC_DIR,
+]
+
+MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-# PayPal Configuration
-PAYPAL_RECEIVER_EMAIL = os.getenv('PAYPAL_RECEIVER_EMAIL')
-PAYPAL_TEST = os.getenv('PAYPAL_TEST', 'True') == 'True'
+PAYPAL_RECEIVER_EMAIL = 'sts.amandeepkaur@gmail.com'
+PAYPAL_TEST = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
