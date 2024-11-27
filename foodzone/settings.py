@@ -7,7 +7,7 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')  # Correct template directory
 
 # Quick-start development settings - unsuitable for production
 SECRET_KEY = 'django-insecure-+06=x1aer^924_h5a5+l0sr)fb8p-9xd+#ctxqib1bi^ztu5dw'
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 # Application definition
