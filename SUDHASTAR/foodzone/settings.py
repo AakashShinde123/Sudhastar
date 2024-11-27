@@ -73,12 +73,14 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-STATIC_DIR = os.path.join(BASE_DIR, 'static')
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Ensure this is correctly set
 
+# Directory where static files will be collected during deployment (must be an absolute path)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Additional directories where static files are stored in your project
 STATICFILES_DIRS = [
-    STATIC_DIR,
-]
+    os.path.join(BASE_DIR, 'static'), 
+
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
