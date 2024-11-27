@@ -16,16 +16,16 @@ class Contact(models.Model):
     class Meta:
         verbose_name_plural = "Contact Table"
 
-# class Category(models.Model):
-#     name = models.CharField(max_length=100, unique=True)
-#     image = models.ImageField(upload_to="categories/%Y/%m/%d")
-#     icon = models.CharField(max_length=50, blank=True)
-#     description = models.TextField()
-#     added_on = models.DateTimeField(auto_now_add=True)
-#     updated_on = models.DateTimeField(auto_now=True)
+class Category(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    image = models.ImageField(upload_to="categories/%Y/%m/%d")
+    icon = models.CharField(max_length=50, blank=True)
+    description = models.TextField()
+    added_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
 
-#     def __str__(self):
-#         return self.name
+    def __str__(self):
+        return self.name
 
 class Team(models.Model):
     name = models.CharField(max_length=100)
