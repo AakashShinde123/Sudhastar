@@ -45,34 +45,51 @@
    
         
         <!-- Collapsible Navbar Content -->
-        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-            <div class="navbar-nav ml-auto">
-                <a href="{% url 'index' %}" class="nav-item nav-link active" style="color: #333;">Home</a>
-                <!-- <a href="{% url 'about' %}" class="nav-item nav-link" style="color: #333;">About</a>
-                <a href="{% url 'team' %}" class="nav-item nav-link" style="color: #333;">Our Bands</a> -->
-                <a href="{% url 'all_dishes' %}" class="nav-item nav-link" style="color: #333;">Menu</a>
-                <a href="{% url 'contact' %}" class="nav-item nav-link" style="color: #333;">Contact</a>
-        
-                        {% if user.is_authenticated %}
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" style="color: #333;"><i class="fas fa-user"></i></a>
-                            <div class="dropdown-menu" style="background-color: #f7f7f7; border-radius: 5px;">
+        <div class="navbar navbar-expand-lg" style="background-color: white; color: #333; padding: 10px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);">
+        <div class="container-fluid">
+            <!-- Brand Logo -->
+            <a href="{% url 'index' %}" class="navbar-brand">
+                <img src="https://via.placeholder.com/150" alt="Logo" style="height: 50px; width: auto;">
+            </a>
+
+            <!-- Toggler for mobile view -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="border: none; background-color: transparent; padding: 10px; cursor: pointer;">
+                <span class="navbar-toggler-icon" style="font-size: 30px; color: #333; transition: color 0.3s ease, transform 0.3s ease;">&#9776;</span> <!-- Hamburger icon -->
+            </button>
+
+            <!-- Navbar Menu -->
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                <div class="navbar-nav ml-auto">
+                    <a href="{% url 'index' %}" class="nav-item nav-link active" style="color: #333; font-size: 16px; font-weight: 500; padding: 8px 15px;">Home</a>
+                    <a href="{% url 'all_dishes' %}" class="nav-item nav-link" style="color: #333; font-size: 16px; font-weight: 500; padding: 8px 15px;">Menu</a>
+                    <a href="{% url 'contact' %}" class="nav-item nav-link" style="color: #333; font-size: 16px; font-weight: 500; padding: 8px 15px;">Contact</a>
+
+                    {% if user.is_authenticated %}
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" style="color: #333; font-size: 16px; font-weight: 500; padding: 8px 15px;">
+                            <i class="fas fa-user"></i>
+                        </a>
+                        <div class="dropdown-menu" style="background-color: #f7f7f7; border-radius: 5px;">
                             {% if user.is_superuser or user.is_staff %}
-                                <a href="{% url 'admin:index' %}" class="dropdown-item" style="color: #333;">Dashboard</a>
+                                <a href="{% url 'admin:index' %}" class="dropdown-item" style="color: #333; font-size: 14px; padding: 8px 15px;">Dashboard</a>
                             {% else %}
-                                <a href="{% url 'dashboard' %}" class="dropdown-item" style="color: #333;">Dashboard</a>
+                                <a href="{% url 'dashboard' %}" class="dropdown-item" style="color: #333; font-size: 14px; padding: 8px 15px;">Dashboard</a>
                             {% endif %}
-                                <a href="{% url 'logout' %}" class="dropdown-item" style="color: #333;">Logout</a>
-                            </div>
+                            <a href="{% url 'logout' %}" class="dropdown-item" style="color: #333; font-size: 14px; padding: 8px 15px;">Logout</a>
                         </div>
-                        {% else %}
-                        <a href="{% url 'register' %}" class="nav-link" style="color: #333;"><i class="fas fa-user"></i></a>
-                        {% endif %}
                     </div>
+                    {% else %}
+                    <a href="{% url 'register' %}" class="nav-link" style="color: #333; font-size: 16px; font-weight: 500; padding: 8px 15px;">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    {% endif %}
                 </div>
             </div>
         </div>
-         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js (Required for Bootstrap functionality) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Nav Bar End -->
         
         {% block content %}
