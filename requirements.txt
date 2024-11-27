@@ -40,6 +40,8 @@ requests==2.32.3
 requests-toolbelt==1.0.0
 shellingham==1.5.4
 six==1.16.0
+django-paypal==1.0.1
+
 tomlkit==0.13.2
 trove-classifiers==2024.10.21.16
 urllib3==2.2.3
