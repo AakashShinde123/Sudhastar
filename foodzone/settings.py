@@ -10,7 +10,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'your-secret-key')
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['sudhastar.vercel.app', 'www.sudhastar.vercel.app']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 INSTALLED_APPS = [
